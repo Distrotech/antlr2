@@ -317,15 +317,13 @@ clean ::
 	@RMF@ *.class antlr @ANTLR_JAR@
 
 distclean :: clean
-	@RMF@ $(antlr_gen_FILES)
+#	@RMF@ $(antlr_gen_FILES)
 
 ## install antlr.jar in libdirectory if exists
 install ::	@ANTLR_JAR@ 
-	-$(MKDIR) -p "$(libdir)"
-	-$(MKDIR) -p "$(datadir)/$(versioneddir)"
+	-$(MKDIR) -p "$(DESTDIR)$(datadir)/java"
 	-test -f @ANTLR_JAR@ && {\
-	 $(INSTALL) -m 444 @ANTLR_JAR@ "$(datadir)/$(versioneddir)" ; \
-	 $(INSTALL) -m 444 @ANTLR_JAR@ "$(libdir)" ; \
+	 $(INSTALL) -m 444 @ANTLR_JAR@ "$(DESTDIR)$(datadir)/java/$(versioneddir).jar" ; \
 	}
 
 distclean :: clean
